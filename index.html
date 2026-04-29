@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SIVAHARI G – Full Stack Developer & Creative Designer based in Chennai, India."/>
+  <meta name="keywords" content="Sivahari G, Full Stack Developer, Creative Designer, Chennai, Portfolio"/>
+  <title>SIVAHARI G — Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/hero.css"/>
+  <link rel="stylesheet" href="css/sections.css"/>
+  <link rel="stylesheet" href="css/spider.css"/>
+</head>
+<body>
+
+  <!-- ── PRELOADER ─────────────────────────────────────────────────── -->
+  <div id="preloader">
+    <canvas id="preloader-canvas"></canvas>
+    <div class="preloader-text">
+      <span class="pre-name">SIVAHARI G</span>
+      <span class="pre-sub">Initializing Portfolio...</span>
+      <div class="pre-bar"><div class="pre-fill" id="pre-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ── SCROLL PROGRESS ───────────────────────────────────────────── -->
+  <div id="scroll-progress"><div id="scroll-bar"></div></div>
+
+  <!-- ── NAV ───────────────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-logo">SG<span class="nav-dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#internship">Internship</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── SPIDER CANVAS (full-page overlay) ────────────────────────── -->
+  <canvas id="spider-canvas"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  HERO                                                          -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <canvas id="hero-bg"></canvas>
+    <div class="hero-workstation">
+      <div class="workstation-glow"></div>
+      <!-- Desk -->
+      <div class="desk">
+        <div class="desk-surface">
+          <!-- Laptop -->
+          <div class="laptop">
+            <div class="laptop-screen">
+              <div class="code-editor">
+                <div class="editor-tabs"><span class="tab active">main.js</span><span class="tab">app.py</span></div>
+                <div class="editor-body" id="code-anim"></div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+          <!-- Floating monitors -->
+          <div class="float-monitor fm-left">
+            <div class="fm-screen">
+              <div class="fm-chart" id="chart-anim"></div>
+            </div>
+          </div>
+          <div class="float-monitor fm-right">
+            <div class="fm-screen terminal-screen">
+              <div class="terminal-lines" id="terminal-anim"></div>
+            </div>
+          </div>
+          <!-- Keyboard -->
+          <div class="keyboard">
+            <div class="keys-row" id="keys-r1"></div>
+            <div class="keys-row" id="keys-r2"></div>
+            <div class="keys-row" id="keys-r3"></div>
+          </div>
+          <!-- Mouse -->
+          <div class="mouse-3d"><div class="mouse-btn"></div></div>
+        </div>
+        <div class="desk-led"></div>
+      </div>
+      <!-- Holographic panels -->
+      <div class="holo-panel hp-1">
+        <div class="hp-title">SKILL MATRIX</div>
+        <div class="hp-bars">
+          <div class="hp-bar" style="--p:90%;--c:#00f0ff"><span>Python</span><div class="hb-track"><div class="hb-fill"></div></div></div>
+          <div class="hp-bar" style="--p:85%;--c:#ff003c"><span>JavaScript</span><div class="hb-track"><div class="hb-fill"></div></div></div>
+          <div class="hp-bar" style="--p:80%;--c:#00ff88"><span>Angular</span><div class="hb-track"><div class="hb-fill"></div></div></div>
+        </div>
+      </div>
+      <div class="holo-panel hp-2">
+        <div class="hp-title">SYS STATUS</div>
+        <div class="hp-stat"><span>CPU</span><span class="stat-val" id="cpu-val">--</span></div>
+        <div class="hp-stat"><span>PROJECTS</span><span class="stat-val">03</span></div>
+        <div class="hp-stat"><span>COMMITS</span><span class="stat-val" id="commit-val">--</span></div>
+      </div>
+    </div>
+
+    <!-- Hero text -->
+    <div class="hero-content">
+      <p class="hero-subtitle">Building Powerful Web &amp; Creative Solutions</p>
+      <p class="hero-tagline">Full Stack Developer &nbsp;|&nbsp; Creative Designer</p>
+      <h1 class="hero-title" id="hero-title">
+        <span id="typed-name"></span><span class="typing-cursor">|</span>
+      </h1>
+      <div class="hero-btns">
+        <a href="assets/resume.pdf" download class="btn-primary">Download Resume</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+      <div class="hero-location">📍 Pallavaram, Chennai, India</div>
+    </div>
+
+    <!-- Particles canvas -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-scroll-hint">SCROLL ↓</div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  ABOUT                                                         -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="section-bg-label">02 / ABOUT</div>
+    <div class="container">
+      <h2 class="section-title reveal">About Me</h2>
+      <p class="section-sub reveal">Get to know the person behind the code</p>
+      <div class="about-grid">
+        <div class="about-avatar-wrap reveal">
+          <div class="avatar-ring"></div>
+          <div class="avatar-core">
+            <img src="assets/profile.jpg" alt="Sivahari G" class="avatar-img" />
+          </div>
+          <div class="orbiting-icons" id="orbit-icons"></div>
+        </div>
+        <div class="about-text reveal">
+          <p class="about-intro">I'm <strong>Sivahari G</strong> — a passionate <em>Full Stack Developer</em> & <em>Creative Designer</em> who transforms ideas into elegant, high-performance digital experiences.</p>
+          <p>Currently in my final year of B.Tech in Information Technology at SRM Valliammai Engineering College, I've spent the last 4 years mastering the art of building full-stack applications — from crafting pixel-perfect frontends to architecting robust backend systems.</p>
+          <p>Whether it's developing a <strong>banking platform with Spring Boot</strong>, building <strong>AI-powered communication tools</strong>, or creating <strong>cybersecurity extensions</strong> — I don't just write code, I engineer solutions that make a real-world impact.</p>
+          <div class="about-highlights">
+            <div class="ah-item">
+              <span class="ah-number">4+</span>
+              <span class="ah-label">Projects Built</span>
+            </div>
+            <div class="ah-item">
+              <span class="ah-number">8.81</span>
+              <span class="ah-label">CGPA</span>
+            </div>
+            <div class="ah-item">
+              <span class="ah-number">7+</span>
+              <span class="ah-label">Tech Skills</span>
+            </div>
+            <div class="ah-item">
+              <span class="ah-number">1</span>
+              <span class="ah-label">Internship</span>
+            </div>
+          </div>
+          <div class="about-quick">
+            <div class="aq-item"><span class="aq-label">📍 Location</span><span>Pallavaram, Chennai, India</span></div>
+            <div class="aq-item"><span class="aq-label">💼 Status</span><span class="status-badge">Open to Work</span></div>
+            <div class="aq-item"><span class="aq-label">📧 Email</span><a href="mailto:sivagovind005@gmail.com">sivagovind005@gmail.com</a></div>
+            <div class="aq-item"><span class="aq-label">🎓 Degree</span><span>B.Tech — Information Technology</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  SKILLS                                                        -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="skills" class="section">
+    <div class="section-bg-label">03 / SKILLS</div>
+    <div class="container">
+      <h2 class="section-title reveal">Tech Stack</h2>
+      <p class="section-sub reveal">Technologies I work with</p>
+      <div class="skills-grid">
+        <div class="skill-card reveal" style="--accent:#00f0ff">
+          <div class="skill-icon">🐍</div>
+          <span class="skill-name">Python</span>
+          <span class="skill-cat">Programming</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#f0db4f">
+          <div class="skill-icon">⚡</div>
+          <span class="skill-name">JavaScript</span>
+          <span class="skill-cat">Programming</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#ff6600">
+          <div class="skill-icon">☕</div>
+          <span class="skill-name">Java</span>
+          <span class="skill-cat">Programming</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#e44d26">
+          <div class="skill-icon">🌐</div>
+          <span class="skill-name">HTML5</span>
+          <span class="skill-cat">Web Dev</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#264de4">
+          <div class="skill-icon">🎨</div>
+          <span class="skill-name">CSS3</span>
+          <span class="skill-cat">Web Dev</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#dd0031">
+          <div class="skill-icon">🅰️</div>
+          <span class="skill-name">Angular</span>
+          <span class="skill-cat">Web Dev</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#00ff88">
+          <div class="skill-icon">🗄️</div>
+          <span class="skill-name">SQL</span>
+          <span class="skill-cat">Database</span>
+        </div>
+        <div class="skill-card reveal" style="--accent:#ffd700">
+          <div class="skill-icon">⬡</div>
+          <span class="skill-name">Git</span>
+          <span class="skill-cat">Tools</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  PROJECTS                                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="projects" class="section">
+    <div class="section-bg-label">04 / PROJECTS</div>
+    <div class="container">
+      <h2 class="section-title reveal">Project Pods</h2>
+      <div class="projects-grid">
+
+        <div class="project-card reveal" data-index="0">
+          <div class="pc-glow"></div>
+          <div class="pc-tag">Cybersecurity</div>
+          <h3>Legitimate Keystroke Surveillance</h3>
+          <p>Ethical monitoring system for cybersecurity cognizance. Captures and analyzes keystroke patterns to detect unauthorized access and behavioral anomalies in real-time.</p>
+          <div class="pc-tech"><span>Python</span><span>Security</span><span>Monitoring</span></div>
+          <div class="pc-footer">
+            <a href="https://github.com/SIVA-2010/CogniType" target="_blank" class="pc-link">⬡ GitHub →</a>
+            <span class="pc-status live">Live</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-index="1">
+          <div class="pc-glow"></div>
+          <div class="pc-tag">AI / CV</div>
+          <h3>Vision2Voice</h3>
+          <p>Sign Language Communication System using ResNet-18 deep learning model. Enables bidirectional Sign-to-Text and Text-to-Sign translation for accessibility.</p>
+          <div class="pc-tech"><span>Python</span><span>ResNet-18</span><span>OpenCV</span></div>
+          <div class="pc-footer">
+            <a href="https://github.com/SIVA-2010/Vision2Voice" target="_blank" class="pc-link">⬡ GitHub →</a>
+            <span class="pc-status live">Live</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-index="2">
+          <div class="pc-glow"></div>
+          <div class="pc-tag">Browser Extension</div>
+          <h3>SafeDownload Guardian</h3>
+          <p>Chrome extension for vulnerability detection and malicious download prevention. Scans URLs and file signatures against threat databases in real-time.</p>
+          <div class="pc-tech"><span>JavaScript</span><span>Chrome API</span><span>Security</span></div>
+          <div class="pc-footer">
+            <a href="https://github.com/SIVA-2010/SafeDownload-Guardian" target="_blank" class="pc-link">⬡ GitHub →</a>
+            <span class="pc-status live">Live</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-index="3">
+          <div class="pc-glow"></div>
+          <div class="pc-tag">Full Stack</div>
+          <h3>Maverick Bank — Full-Stack Banking System</h3>
+          <p>Built a Spring Boot banking platform covering account management, transactions, loan processing, and secure authentication. Designed RESTful APIs with layered architecture following industry best practices for scalability.</p>
+          <div class="pc-tech"><span>Spring Boot</span><span>Java</span><span>REST API</span><span>MySQL</span></div>
+          <div class="pc-footer">
+            <a href="https://github.com/SIVA-2010/Maverick_bank" target="_blank" class="pc-link">⬡ GitHub →</a>
+            <span class="pc-status live">Live</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  EDUCATION                                                     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="education" class="section">
+    <div class="section-bg-label">05 / EDUCATION</div>
+    <div class="container">
+      <h2 class="section-title reveal">Education Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-line" id="tl-line"></div>
+
+        <div class="tl-item reveal tl-left" data-year="2022–2026">
+          <div class="tl-node"><div class="tl-pulse"></div></div>
+          <div class="tl-card">
+            <div class="tl-badge">Current</div>
+            <h3>B.Tech — Information Technology</h3>
+            <p class="tl-inst">SRM Valliammai Engineering College</p>
+            <p class="tl-loc">📍 Kattankulathur, Chennai</p>
+            <div class="tl-grade">CGPA: <strong>8.81</strong> / 10</div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal tl-right" data-year="HSC">
+          <div class="tl-node"><div class="tl-pulse"></div></div>
+          <div class="tl-card">
+            <h3>Higher Secondary Certificate</h3>
+            <p class="tl-inst">Sri Sankara Matric Hr. Sec. School</p>
+            <div class="tl-grade">Score: <strong>91%</strong></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal tl-left" data-year="SSLC">
+          <div class="tl-node"><div class="tl-pulse"></div></div>
+          <div class="tl-card">
+            <h3>Secondary School Leaving Certificate</h3>
+            <p class="tl-inst">Sri Sankara Matric Hr. Sec. School</p>
+            <div class="tl-grade">Score: <strong>95%</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  INTERNSHIP                                                    -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="internship" class="section">
+    <div class="section-bg-label">06 / INTERNSHIP</div>
+    <div class="container">
+      <h2 class="section-title reveal">Experience</h2>
+      <div class="internship-card reveal">
+        <div class="intern-left">
+          <div class="intern-logo">FS</div>
+          <div class="intern-connector"></div>
+        </div>
+        <div class="intern-right">
+          <div class="intern-period">June 2025</div>
+          <h3>Full Stack Developer Intern</h3>
+          <p class="intern-company">FEMTOSOFT TECHNOLOGIES</p>
+          <ul class="intern-points">
+            <li>Built responsive Angular frontend with component-driven architecture</li>
+            <li>Integrated REST APIs for seamless client-server data exchange</li>
+            <li>Developed complete client-server architecture from scratch</li>
+          </ul>
+          <a href="https://github.com/SIVA-2010/Intern_project" target="_blank" class="pc-link">⬡ View Project →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!--  CONTACT                                                       -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="contact" class="section">
+    <div class="section-bg-label">07 / CONTACT</div>
+    <canvas id="contact-bg"></canvas>
+    <div class="container">
+      <h2 class="section-title reveal">Open a Channel</h2>
+      <p class="section-sub reveal">Ready to build something extraordinary? Let's connect.</p>
+
+      <div class="contact-grid">
+        <!-- Contact links -->
+        <div class="contact-links reveal">
+          <a href="tel:+918825401868" class="cl-item">
+            <div class="cl-icon">📞</div>
+            <div><span class="cl-label">Phone</span><span class="cl-val">+91 8825401868</span></div>
+          </a>
+          <a href="mailto:sivagovind005@gmail.com" class="cl-item">
+            <div class="cl-icon">✉</div>
+            <div><span class="cl-label">Email</span><span class="cl-val">sivagovind005@gmail.com</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/sivahari-g-5a332b274/" target="_blank" class="cl-item">
+            <div class="cl-icon">in</div>
+            <div><span class="cl-label">LinkedIn</span><span class="cl-val">sivahari-g</span></div>
+          </a>
+          <a href="https://github.com/SIVA-2010" target="_blank" class="cl-item">
+            <div class="cl-icon">⬡</div>
+            <div><span class="cl-label">GitHub</span><span class="cl-val">SIVA-2010</span></div>
+          </a>
+        </div>
+
+        <!-- Contact form -->
+        <form class="contact-form reveal" id="contact-form">
+          <div class="cf-header">
+            <span class="cf-prompt">&gt;_</span> Send Message
+          </div>
+          <div class="cf-group">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="from_name" placeholder="Your Name" required autocomplete="name"/>
+          </div>
+          <div class="cf-group">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="reply_to" placeholder="you@email.com" required autocomplete="email"/>
+          </div>
+          <div class="cf-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="Let's work together" required/>
+          </div>
+          <div class="cf-group">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary cf-submit" id="cf-btn">
+            <span id="cf-btn-text">Send Transmission ⟶</span>
+          </button>
+          <div id="cf-status" class="cf-status"></div>
+        </form>
+      </div>
+    </div>
+    <div class="contact-footer">
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/sivahari-g-5a332b274/" target="_blank" class="footer-icon" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://github.com/SIVA-2010" target="_blank" class="footer-icon" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="mailto:sivagovind005@gmail.com" class="footer-icon" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+        </a>
+      </div>
+      <p>© 2025 SIVAHARI G. All Rights Reserved.</p>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="js/particles.js"></script>
+  <script src="js/spider.js"></script>
+  <script src="js/parallax.js"></script>
+  <script src="js/email.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

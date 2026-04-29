@@ -1,0 +1,338 @@
+/* ═══════════════════════════════════════════════
+   HERO.CSS — Workstation, Holo Panels, Hero Text
+═══════════════════════════════════════════════ */
+
+#hero {
+  position:relative;
+  min-height:100vh;
+  background: var(--hero-bg);
+  display:flex; align-items:flex-start; justify-content:center;
+  overflow:hidden;
+  padding-top: calc(var(--nav-h) + 3vh);
+}
+
+/* Background canvas */
+#hero-bg, #particles-canvas {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+#hero-bg { z-index:0; }
+#particles-canvas { z-index:1; }
+
+/* ── Hero content ────────────────────────────── */
+.hero-content {
+  position:relative; z-index:5;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+  gap:0.6rem;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight:900;
+  letter-spacing:0.12em;
+  line-height:1;
+  background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-red) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 40px rgba(0,240,255,0.3));
+  animation: titleReveal 1.2s 0.3s cubic-bezier(0.23,1,0.32,1) both;
+  min-height:1.2em;
+}
+.typing-cursor {
+  -webkit-text-fill-color: var(--neon-cyan);
+  animation: cursorBlink 0.7s step-end infinite;
+  font-weight:300;
+}
+@keyframes cursorBlink {
+  0%,100% { opacity:1; }
+  50% { opacity:0; }
+}
+@keyframes titleReveal {
+  from { opacity:0; transform:translateY(30px) scale(0.95); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-weight:400;
+  color: var(--text-secondary);
+  letter-spacing:0.05em;
+  animation: titleReveal 1.2s 0s cubic-bezier(0.23,1,0.32,1) both;
+}
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  color: var(--neon-cyan);
+  letter-spacing:0.1em;
+  opacity:0.8;
+  animation: titleReveal 1.2s 0.15s cubic-bezier(0.23,1,0.32,1) both;
+}
+.hero-btns {
+  display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;
+  animation: titleReveal 1.2s 0.5s cubic-bezier(0.23,1,0.32,1) both;
+  margin-top:0.5rem;
+}
+.hero-location {
+  font-family: var(--font-mono);
+  font-size:0.72rem; color: var(--text-muted);
+  letter-spacing:0.1em;
+  animation: titleReveal 1.2s 0.65s cubic-bezier(0.23,1,0.32,1) both;
+}
+.hero-scroll-hint {
+  position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+  font-family: var(--font-mono); font-size:0.65rem;
+  color: var(--text-muted); letter-spacing:0.3em;
+  animation:bounceDown 2s ease infinite;
+  z-index:5;
+}
+@keyframes bounceDown {
+  0%,100% { transform:translateX(-50%) translateY(0); opacity:0.5; }
+  50%  { transform:translateX(-50%) translateY(8px); opacity:1; }
+}
+
+/* ── 3D Workstation ─────────────────────────── */
+.hero-workstation {
+  position:absolute; inset:0;
+  display:flex; align-items:flex-end; justify-content:center;
+  z-index:2; pointer-events:none;
+  perspective:1200px;
+  padding-bottom:6vh;
+}
+.workstation-glow {
+  position:absolute;
+  bottom:0; left:50%; transform:translateX(-50%);
+  width:80%; height:40%;
+  background:radial-gradient(ellipse at center bottom,
+    rgba(0,240,255,0.08) 0%,
+    rgba(0,240,255,0.03) 40%,
+    transparent 70%);
+  pointer-events:none;
+}
+
+/* ── Desk ────────────────────────────────────── */
+.desk {
+  position:relative;
+  transform: rotateX(12deg);
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.desk-surface {
+  position:relative;
+  display:flex; align-items:flex-end; justify-content:center; gap:1.5rem;
+  padding: 1.5rem 2rem 0;
+  background: linear-gradient(180deg, #1a1208 0%, #110d06 100%);
+  border-radius:8px 8px 0 0;
+  border-top:1px solid rgba(255,200,100,0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255,230,150,0.08),
+    0 -4px 30px rgba(0,0,0,0.5);
+  min-width: clamp(300px, 70vw, 900px);
+}
+.desk-led {
+  height:4px;
+  background:linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-red), var(--neon-cyan), transparent);
+  border-radius:0 0 4px 4px;
+  animation: ledPulse 3s ease infinite;
+  box-shadow: 0 0 20px rgba(0,240,255,0.4);
+}
+@keyframes ledPulse {
+  0%,100% { opacity:0.6; }
+  50% { opacity:1; }
+}
+
+/* ── Laptop ──────────────────────────────────── */
+.laptop {
+  position:relative; flex-shrink:0;
+  transform-style:preserve-3d;
+}
+.laptop-screen {
+  width:clamp(180px,25vw,320px);
+  height:clamp(120px,17vw,210px);
+  background:#050a0e;
+  border:2px solid rgba(0,240,255,0.25);
+  border-radius:6px 6px 0 0;
+  overflow:hidden;
+  position:relative;
+  box-shadow:
+    0 0 0 1px rgba(0,240,255,0.08),
+    0 0 30px rgba(0,240,255,0.15),
+    inset 0 0 20px rgba(0,0,0,0.8);
+}
+.laptop-screen::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg,
+    rgba(0,240,255,0.02) 0px, rgba(0,240,255,0.02) 1px,
+    transparent 1px, transparent 4px);
+  pointer-events:none; z-index:10;
+}
+.laptop-base {
+  width:clamp(200px,28vw,350px);
+  height:10px;
+  background: linear-gradient(180deg, #2a2010 0%, #1a1408 100%);
+  border-radius:0 0 4px 4px;
+  margin:0 auto;
+  box-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+
+/* Code editor inside laptop */
+.code-editor {
+  height:100%; display:flex; flex-direction:column; font-family: var(--font-mono);
+}
+.editor-tabs {
+  display:flex; gap:4px; padding:4px 6px;
+  background:rgba(0,0,0,0.4);
+  border-bottom:1px solid rgba(0,240,255,0.1);
+}
+.tab {
+  font-size:0.5rem; padding:2px 8px;
+  color: var(--text-muted); border-radius:2px;
+}
+.tab.active { background:rgba(0,240,255,0.1); color: var(--neon-cyan); }
+.editor-body {
+  flex:1; padding:6px 8px; font-size:clamp(0.38rem,0.8vw,0.52rem);
+  line-height:1.6; overflow:hidden;
+}
+
+/* ── Floating monitors ───────────────────────── */
+.float-monitor {
+  position:absolute;
+  bottom:100%;
+  animation: floatMon 4s ease-in-out infinite;
+}
+.fm-left  { left:-8vw; animation-delay:-1s; }
+.fm-right { right:-8vw; animation-delay:-2.5s; }
+@keyframes floatMon {
+  0%,100% { transform:translateY(0) rotate(-2deg); }
+  50% { transform:translateY(-10px) rotate(-2deg); }
+}
+.fm-left .fm-screen  { transform:rotate(5deg); }
+.fm-right .fm-screen { transform:rotate(-5deg); }
+.fm-screen {
+  width:clamp(80px,11vw,150px);
+  height:clamp(55px,8vw,105px);
+  background:#020e08;
+  border:1px solid rgba(0,255,136,0.2);
+  border-radius:4px; overflow:hidden;
+  box-shadow:0 0 20px rgba(0,255,136,0.1);
+  font-size:clamp(0.3rem,0.5vw,0.4rem);
+  font-family: var(--font-mono);
+}
+.terminal-screen { background:#050014; border-color:rgba(180,0,255,0.25); }
+
+/* Mini chart inside left monitor */
+.fm-chart { padding:6px; }
+.fm-chart-bar {
+  height:3px; background:var(--neon-green);
+  margin:3px 0; border-radius:1px;
+  box-shadow:0 0 4px var(--neon-green);
+}
+
+/* Terminal lines */
+.terminal-lines { padding:4px 6px; }
+.t-line { color:var(--neon-purple); margin:2px 0; opacity:0.9; }
+
+/* ── Keyboard ────────────────────────────────── */
+.keyboard {
+  position:absolute; bottom:-8px; left:50%;
+  transform:translateX(-50%);
+  display:flex; flex-direction:column; gap:2px;
+  padding:4px 8px 6px;
+  background:linear-gradient(180deg, #d0c8a0 0%, #b8b090 100%);
+  border-radius:4px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.5);
+}
+.keys-row { display:flex; gap:2px; }
+.key {
+  width:clamp(7px,1.1vw,13px);
+  height:clamp(6px,0.9vw,11px);
+  background: linear-gradient(180deg,#e8e0c0,#c8c0a0);
+  border-radius:1px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.3);
+}
+
+/* ── Mouse ───────────────────────────────────── */
+.mouse-3d {
+  width:clamp(18px,2.5vw,32px);
+  height:clamp(24px,3.5vw,46px);
+  background:linear-gradient(135deg,#d8d0b8,#b0a888);
+  border-radius:40% 40% 48% 48% / 30% 30% 70% 70%;
+  position:relative; align-self:flex-end; margin-bottom:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.4);
+}
+.mouse-btn {
+  position:absolute; top:20%; left:50%;
+  transform:translateX(-50%);
+  width:40%; height:35%;
+  border-top:1px solid rgba(0,0,0,0.2);
+}
+
+/* ── Holographic panels ─────────────────────── */
+.holo-panel {
+  position:absolute; z-index:3;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:8px;
+  padding:1rem 1.25rem;
+  min-width:180px;
+  box-shadow:
+    0 0 0 1px rgba(0,240,255,0.05),
+    0 8px 32px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(0,240,255,0.08);
+  animation: floatPanel 5s ease-in-out infinite;
+  transition: box-shadow 0.4s;
+  pointer-events:none;
+}
+.hp-1 { left:2%; top:20%; animation-delay:0s; }
+.hp-2 { right:2%; top:25%; animation-delay:-2s; }
+@keyframes floatPanel {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-12px); }
+}
+.hp-title {
+  font-family: var(--font-display);
+  font-size:0.62rem; color: var(--neon-cyan);
+  letter-spacing:0.2em; margin-bottom:0.75rem;
+  border-bottom:1px solid rgba(0,240,255,0.1);
+  padding-bottom:0.4rem;
+}
+.hp-bars { display:flex; flex-direction:column; gap:0.5rem; }
+.hp-bar {
+  display:flex; flex-direction:column; gap:3px;
+}
+.hp-bar span { font-size:0.6rem; color: var(--text-secondary); letter-spacing:0.08em; }
+.hb-track {
+  height:3px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden;
+}
+.hb-fill {
+  height:100%; width: var(--p);
+  background: var(--c);
+  border-radius:2px;
+  box-shadow:0 0 6px var(--c);
+  animation: barFill 2s cubic-bezier(0.23,1,0.32,1) both;
+}
+@keyframes barFill { from { width:0; } }
+.hp-stat {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0.3rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:0.62rem;
+  color: var(--text-secondary);
+}
+.stat-val {
+  font-family: var(--font-display);
+  font-size:0.75rem; color: var(--neon-cyan);
+}
+
+@media (max-width:900px) {
+  .holo-panel { display:none; }
+  .float-monitor { display:none; }
+  .hero-workstation { opacity:0.3; }
+}
+@media (max-width:600px) {
+  .hero-workstation { display:none; }
+  #hero { justify-content:center; }
+}
